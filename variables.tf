@@ -43,7 +43,7 @@ variable "db_system" {
         db_home_display_name = "pdb"
         hostname = "pdb"
         shape = "VM.Standard2.4"
-        ssh_public_key = ""
+        ssh_public_key = ["${var.ssh_public_key}"]
         data_storage_size_in_gb = "8"
         license_model = "BRING_YOUR_OWN_LICENSE"
         node_count = "1"  
