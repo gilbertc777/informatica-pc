@@ -45,7 +45,7 @@ variable "db_system" {
         hostname = "pcdb-host"
         shape = "VM.Standard2.4"
         data_storage_size_in_gb = "8"
-        license_model = "BYOL"
+        license_model = "BRING_YOUR_OWN_LICENSE"
         node_count = "2"  
     }
 }
