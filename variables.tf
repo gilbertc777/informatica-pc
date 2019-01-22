@@ -39,14 +39,14 @@ variable "db_system" {
         db_home_database_admin_password = "#Password123456#Password123456"
         db_home_database_db_name = "pc"
         db_home_database_db_workload = "OLTP"
-        db_home_database_pdb_name = "pdb"
+        db_home_database_pdb_name = "pdbpc"
         db_home_db_version = "12.2.0.1"
         db_home_display_name = "pdb"
-        hostname = "pdb"
+        hostname = "pcdb-host"
         shape = "VM.Standard2.4"
         data_storage_size_in_gb = "8"
-        license_model = "BRING_YOUR_OWN_LICENSE"
-        node_count = "1"  
+        license_model = "BYOL"
+        node_count = "2"  
     }
 }
 
