@@ -1,7 +1,7 @@
 resource "oci_database_db_system" "domain_db_system" {
     #Required
     availability_domain = "${lookup(data.oci_identity_availability_domains.availability_domains.availability_domains[0], "name")}"
-    compartment_id = "${var.tenancy_ocid}"
+    compartment_id = "${var.compartment_ocid}"
     database_edition = "${var.db_system["database_edition"]}"
     db_home {
         #Required
@@ -35,7 +35,7 @@ resource "oci_database_db_system" "domain_db_system" {
 #     depends_on = ["oci_database_db_system.domain_db_system"]
 #     #Required
 #     availability_domain = "${lookup(data.oci_identity_availability_domains.availability_domains.availability_domains[0], "name")}"
-#     compartment_id = "${var.tenancy_ocid}"
+#     compartment_id = "${var.compartment_ocid}"
 #     shape = "${var.pc_instance["shape"]}"
 
 #     #Optional
