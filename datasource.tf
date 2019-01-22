@@ -60,7 +60,7 @@ data "oci_database_db_versions" "test_db_versions_by_db_system_id" {
 }
 
 data "oci_database_db_system_shapes" "domain_db_system_shapes" {
-  availability_domain = "${lookup(data.oci_identity_availability_domains.availability_domains.availability_domains[0], "name")"
+  availability_domain = "${lookup(data.oci_identity_availability_domains.availability_domains.availability_domains[0], "name")}"
   compartment_id      = "${var.db_system["shape"]}"
 
   filter {
