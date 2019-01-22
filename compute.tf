@@ -3,19 +3,15 @@ resource "oci_database_db_system" "domain_db_system" {
     compartment_id = "${var.compartment_ocid}"
     cpu_core_count      = "${lookup(data.oci_database_db_system_shapes.test_db_system_shapes.db_system_shapes[0], "minimum_core_count")}"
     database_edition = "${var.db_system["database_edition"]}"
+    
     db_home {
-        #Required
         database {
             #Required
             admin_password = "${var.db_system["db_home_database_admin_password"]}"
-
-            #Optional
             db_name = "${var.db_system["db_home_database_db_name"]}"
             db_workload = "${var.db_system["db_home_database_db_workload"]}"
             pdb_name = "${var.db_system["db_home_database_pdb_name"]}"
         }
-
-        #Optional
         db_version = "${var.db_system["db_home_db_version"]}"
         display_name = "${var.db_system["db_home_display_name"]}"
     }
