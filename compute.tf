@@ -1,7 +1,6 @@
 resource "oci_database_db_system" "domain_db_system" {
     availability_domain = "${lookup(data.oci_identity_availability_domains.availability_domains.availability_domains[0], "name")}"
     compartment_id = "${var.compartment_ocid}"
-    cpu_core_count      = "${lookup(data.oci_database_db_system_shapes.test_db_system_shapes.db_system_shapes[0], "minimum_core_count")}"
     database_edition = "${var.db_system["database_edition"]}"
     
     db_home {

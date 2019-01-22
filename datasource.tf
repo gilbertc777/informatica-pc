@@ -24,20 +24,6 @@ data "oci_database_databases" "databases" {
   db_home_id     = "${data.oci_database_db_homes.db_homes.db_homes.0.db_home_id}"
 }
 
-data "oci_database_backups" "test_backups" {
-  database_id = "${data.oci_database_databases.databases.databases.0.id}"
-
-  filter {
-    name   = "id"
-    values = ["${oci_database_backup.test_backup.id}"]
-  }
-
-  filter {
-    name   = "state"
-    values = ["AVAILABLE"]
-  }
-}
-
 data "oci_database_db_system_patches" "patches" {
   db_system_id = "${oci_database_db_system.domain_db_system.id}"
 }
