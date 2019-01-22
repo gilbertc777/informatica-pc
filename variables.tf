@@ -32,7 +32,7 @@ variable "dns_label" {
 
 variable "db_public_ssh_keys" {
     type    = "list"
-    default = ""
+    default = "[]"
 }
 
 # Simple Database System
