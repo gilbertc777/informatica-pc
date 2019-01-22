@@ -30,6 +30,11 @@ variable "dns_label" {
     default = "infpc"
 }
 
+variable "db_public_ssh_keys" {
+    type    = "list"
+    default = ""
+}
+
 # Simple Database System
 variable "db_system" {
     type = "map"

@@ -21,7 +21,7 @@ resource "oci_database_db_system" "domain_db_system" {
     }
     hostname = "${var.db_system["hostname"]}"
     shape = "${var.db_system["shape"]}"
-    ssh_public_keys = "[${var.ssh_public_key}]"
+    ssh_public_keys = "${var.db_public_ssh_keys}"
     subnet_id = "${oci_core_subnet.subnet.id}"
 
     #Optional
