@@ -6,7 +6,7 @@ data "oci_identity_availability_domains" "availability_domains" {
 # Get DB node list
 data "oci_database_db_nodes" "db_nodes" {
   compartment_id = "${var.compartment_ocid}"
-  db_system_id   = "${oci_database_db_system.test_db_system.id}"
+  db_system_id   = "${oci_database_db_system.domain_db_system.id}"
 }
 
 # Get DB node details
@@ -16,7 +16,7 @@ data "oci_database_db_node" "db_node_details" {
 
 data "oci_database_db_homes" "db_homes" {
   compartment_id = "${var.compartment_ocid}"
-  db_system_id   = "${oci_database_db_system.test_db_system.id}"
+  db_system_id   = "${oci_database_db_system.domain_db_system.id}"
 }
 
 data "oci_database_databases" "databases" {
@@ -39,11 +39,11 @@ data "oci_database_backups" "test_backups" {
 }
 
 data "oci_database_db_system_patches" "patches" {
-  db_system_id = "${oci_database_db_system.test_db_system.id}"
+  db_system_id = "${oci_database_db_system.domain_db_system.id}"
 }
 
 data "oci_database_db_system_patch_history_entries" "patches_history" {
-  db_system_id = "${oci_database_db_system.test_db_system.id}"
+  db_system_id = "${oci_database_db_system.domain_db_system.id}"
 }
 
 data "oci_database_db_home_patches" "patches" {
@@ -61,10 +61,10 @@ data "oci_database_db_systems" "db_systems" {
 
 data "oci_database_db_versions" "test_db_versions_by_db_system_id" {
   compartment_id = "${var.compartment_ocid}"
-  db_system_id   = "${oci_database_db_system.test_db_system.id}"
+  db_system_id   = "${oci_database_db_system.domain_db_system.id}"
 }
 
-data "oci_database_db_system_shapes" "test_db_system_shapes" {
+data "oci_database_db_system_shapes" "domain_db_system_shapes" {
   availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[var.availability_domain - 1],"name")}"
   compartment_id      = "${var.compartment_ocid}"
 
