@@ -1,7 +1,7 @@
 resource "oci_database_db_system" "domain_db_system" {
-    #Required
     availability_domain = "${lookup(data.oci_identity_availability_domains.availability_domains.availability_domains[0], "name")}"
     compartment_id = "${var.compartment_ocid}"
+    cpu_core_count      = "${lookup(data.oci_database_db_system_shapes.test_db_system_shapes.db_system_shapes[0], "minimum_core_count")}"
     database_edition = "${var.db_system["database_edition"]}"
     db_home {
         #Required
@@ -21,7 +21,7 @@ resource "oci_database_db_system" "domain_db_system" {
     }
     hostname = "${var.db_system["hostname"]}"
     shape = "${var.db_system["shape"]}"
-    ssh_public_keys = "${var.db_public_ssh_keys}"
+    ssh_public_keys = ["${var.ssh_public_key}"]
     subnet_id = "${oci_core_subnet.subnet.id}"
 
     #Optional
@@ -29,33 +29,3 @@ resource "oci_database_db_system" "domain_db_system" {
     license_model = "${var.db_system["license_model"]}"
     node_count = "${var.db_system["node_count"]}"
 }
-
-
-# resource "oci_core_instance" "pc_instance" {
-#     depends_on = ["oci_database_db_system.domain_db_system"]
-#     #Required
-#     availability_domain = "${lookup(data.oci_identity_availability_domains.availability_domains.availability_domains[0], "name")}"
-#     compartment_id = "${var.compartment_ocid}"
-#     shape = "${var.pc_instance["shape"]}"
-
-#     #Optional
-#     create_vnic_details {
-#         #Required
-#         subnet_id = "${oci_core_subnet.subnet.id}"
-#     }
-#     display_name = "${var.pc_instance["display_name"]}"
-#     metadata {
-#         ssh_authorized_keys = "${var.ssh_public_key}"
-#         user_data           = "${base64encode(format("%s\n%s\n%s\n",
-#           "#!/usr/bin/env bash",
-#           "password=${var.dse["password"]}",
-#           file("../scripts/powercenter.sh")
-#         ))}"
-#     }
-#     source_details {
-#         #Required
-#         source_id = "${var.pc_imageid}"
-#         source_type = "image"
-#     }
-#     preserve_boot_volume = false
-# }
