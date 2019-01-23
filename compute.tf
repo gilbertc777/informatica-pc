@@ -14,6 +14,7 @@ resource "oci_database_db_system" "domain_db_system" {
         db_version = "${var.db_home_db_version}"
         display_name = "${var.db_home_display_name}"
     }
+    disk_redundancy = "${var.db_disk_redundancy}"
     hostname = "${var.db_hostname}"
     shape = "${var.db_shape}"
     ssh_public_keys = ["${tls_private_key.key.public_key_openssh}"]

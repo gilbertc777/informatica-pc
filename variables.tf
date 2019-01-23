@@ -92,6 +92,11 @@ variable db_node_count {
     default = "2"
 }
 
+variable db_disk_redundancy {
+    type    = "string"
+    default = "HIGH"
+}
+
 # Simple Powercenter VM
 variable "pc_instance" {
     type = "map"
