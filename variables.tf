@@ -31,23 +31,65 @@ variable "dns_label" {
     default = "infpc"
 }
 
-# Simple Database System
-variable "db_system" {
-    type = "map"
-    default = {
-        database_edition = "Enterprise_Edition_Extreme_Performance"
-        db_home_database_admin_password = "#Password123456#Password123456"
-        db_home_database_db_name = "pc"
-        db_home_database_db_workload = "OLTP"
-        db_home_database_pdb_name = "pdbpc"
-        db_home_db_version = "12.2.0.1"
-        db_home_display_name = "pdb"
-        hostname = "pcdb-host"
-        shape = "VM.Standard2.4"
-        data_storage_size_in_gb = "8"
-        license_model = "BRING_YOUR_OWN_LICENSE"
-        node_count = "2"  
-    }
+# Database Defaults
+variable "db_database_edition" {
+    type    = "string"
+    default = "Enterprise_Edition_Extreme_Performance"
+}
+
+variable "db_home_database_admin_password" {
+    type = "string"
+    default = "#Password123456#Password123456"
+}
+
+variable "db_home_database_db_name" {
+    type    = "string"
+    default = "pc"
+}
+
+variable db_home_database_db_workload {
+    type    = "string"
+    default = "OLTP"
+}
+
+variable db_home_database_pdb_name {
+    type    = "string"
+    default = "pdbpc"
+}
+
+variable db_home_db_version {
+    type    = "string"
+    default = "12.2.0.1"
+}
+
+variable db_home_display_name {
+    type    = "string"
+    default = "pdb"
+}
+
+variable db_hostname {
+    type    = "string"
+    default = "pcdb-host"
+}
+
+variable db_shape {
+    type    = "string"
+    default = "VM.Standard2.4"
+}
+
+variable db_data_storage_size_in_gb {
+    type    = "string"
+    default = "8"
+}
+
+variable db_license_model {
+    type    = "string"
+    default = "BRING_YOUR_OWN_LICENSE"
+}
+
+variable db_node_count {
+    type    = "string"
+    default = "2"
 }
 
 # Simple Powercenter VM
