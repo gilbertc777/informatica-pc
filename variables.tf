@@ -34,7 +34,7 @@ variable "dns_label" {
 # Database Defaults
 variable "db_database_edition" {
     type    = "string"
-    default = "Enterprise_Edition_Extreme_Performance"
+    default = "ENTERPRISE_EDITION_EXTREME_PERFORMANCE"
 }
 
 variable "db_home_database_admin_password" {
@@ -74,7 +74,7 @@ variable db_hostname {
 
 variable db_shape {
     type    = "string"
-    default = "VM.Standard2.4"
+    default = "VM.Standard2.8"
 }
 
 variable db_data_storage_size_in_gb {
