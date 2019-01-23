@@ -79,7 +79,7 @@ variable db_shape {
 
 variable db_data_storage_size_in_gb {
     type    = "string"
-    default = "8192"
+    default = "512"
 }
 
 variable db_license_model {
