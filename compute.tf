@@ -22,4 +22,9 @@ resource "oci_database_db_system" "domain_db_system" {
     data_storage_size_in_gb = "${var.db_data_storage_size_in_gb}"
     license_model = "${var.db_license_model}"
     node_count = "${var.db_node_count}"
+
+    timeouts {
+        create = "2h"
+        delete = "2h"
+    }
 }
