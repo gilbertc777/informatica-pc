@@ -98,14 +98,19 @@ variable db_disk_redundancy {
 }
 
 # Simple Powercenter VM
-variable "pc_instance" {
-    type = "map"
-    default = {
-        shape = "VM.Standard2.4"
-        display_name = "pc-test-vm"
-        # Custom Image in current Tenancy
-        imageid = "ocid1.image.oc1.iad.aaaaaaaa2ptbgaxr64uxz5m6cxpv5mpiv66pgsnlgyu3ugctpf7xsr2q6o6a"
-    }
+variable pc_shape {
+    type    = "string"
+    default = "VM.Standard2.4" 
+}
+
+variable pc_display_name {
+    type    = "string"
+    default = "pc-test-vm"
+}
+
+variable pc_imageid {
+    type    = "string"
+    default = "ocid1.image.oc1.iad.aaaaaaaa2ptbgaxr64uxz5m6cxpv5mpiv66pgsnlgyu3ugctpf7xsr2q6o6a"
 }
 
 variable "pc_node_count" {
