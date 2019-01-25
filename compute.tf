@@ -33,7 +33,7 @@ resource "oci_database_db_system" "domain_db_system" {
 # Powercenter Compute Resources
 resource "oci_core_instance" "pc_instance" {
     depends_on = ["oci_database_db_system.domain_db_system"]
-    count = "${var.pc_node_count}"
+    count = "${var.pc_instance_node_count}"
     #Required
     availability_domain = "${var.db_system_availability_domain}"
     compartment_id = "${var.tenancy_ocid}"
@@ -45,7 +45,7 @@ resource "oci_core_instance" "pc_instance" {
     }
     source_details {
         #Required
-        source_id = "${var.pc_imageid}"
+        source_id = "${var.pc_instance_imageid}"
         source_type = "image"
     }
     preserve_boot_volume = false

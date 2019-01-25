@@ -47,73 +47,73 @@ variable "db_home_database_db_name" {
     default = "pc"
 }
 
-variable db_home_database_db_workload {
+variable "db_home_database_db_workload" {
     type    = "string"
     default = "OLTP"
 }
 
-variable db_home_database_pdb_name {
+variable "db_home_database_pdb_name" {
     type    = "string"
     default = "pdbpc"
 }
 
-variable db_home_db_version {
+variable "db_home_db_version" {
     type    = "string"
     default = "12.2.0.1"
 }
 
-variable db_home_display_name {
+variable "db_home_display_name" {
     type    = "string"
     default = "pdb"
 }
 
-variable db_hostname {
+variable "db_hostname" {
     type    = "string"
     default = "pcdb-host"
 }
 
-variable db_shape {
+variable "db_shape" {
     type    = "string"
     default = "VM.Standard2.8"
 }
 
-variable db_data_storage_size_in_gb {
+variable "db_data_storage_size_in_gb" {
     type    = "string"
     default = "512"
 }
 
-variable db_license_model {
+variable "db_license_model" {
     type    = "string"
     default = "BRING_YOUR_OWN_LICENSE"
 }
 
-variable db_node_count {
+variable "db_node_count" {
     type    = "string"
     default = "2"
 }
 
-variable db_disk_redundancy {
+variable "db_disk_redundancy" {
     type    = "string"
     default = "HIGH"
 }
 
 # Simple Powercenter VM
-variable pc_shape {
+variable "pc_instance_shape" {
     type    = "string"
     default = "VM.Standard2.4" 
 }
 
-variable pc_display_name {
+variable "pc_instance_display_name" {
     type    = "string"
     default = "pc-test-vm"
 }
 
-variable pc_imageid {
+variable "pc_instance_imageid" {
     type    = "string"
     default = "ocid1.image.oc1.iad.aaaaaaaa2ptbgaxr64uxz5m6cxpv5mpiv66pgsnlgyu3ugctpf7xsr2q6o6a"
 }
 
-variable "pc_node_count" {
+variable "pc_instance_node_count" {
     type    = "string"
     default = "1"
 }
