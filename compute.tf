@@ -1,3 +1,4 @@
+# Powercenter DB resource
 resource "oci_database_db_system" "domain_db_system" {
     availability_domain = "${lookup(data.oci_identity_availability_domains.availability_domains.availability_domains[0], "name")}"
     compartment_id      = "${var.compartment_ocid}"
@@ -27,4 +28,25 @@ resource "oci_database_db_system" "domain_db_system" {
         create = "2h"
         delete = "2h"
     }
+}
+
+# Powercenter Compute Resources
+resource "oci_core_instance" "pc_instance" {
+    depends_on = ["oci_database_db_system.domain_db_system"]
+    count = "${var.pc_node_count}"
+    #Required
+    availability_domain = "${var.db_system_availability_domain}"
+    compartment_id = "${var.tenancy_ocid}"
+    shape = "${var.pc_instance_shape}"
+
+    display_name = "${var.pc_instance_display_name}"
+    metadata {
+        ssh_authorized_keys = "${tls_private_key.key.public_key_openssh}"
+    }
+    source_details {
+        #Required
+        source_id = "${var.pc_imageid}"
+        source_type = "image"
+    }
+    preserve_boot_volume = false
 }

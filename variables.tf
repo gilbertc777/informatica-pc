@@ -103,8 +103,14 @@ variable "pc_instance" {
     default = {
         shape = "VM.Standard2.4"
         display_name = "pc-test-vm"
-        imageid = ""
+        # Custom Image in current Tenancy
+        imageid = "ocid1.image.oc1.iad.aaaaaaaa2ptbgaxr64uxz5m6cxpv5mpiv66pgsnlgyu3ugctpf7xsr2q6o6a"
     }
+}
+
+variable "pc_node_count" {
+    type    = "string"
+    default = "1"
 }
 
 variable "bootstrap_file_name" {
