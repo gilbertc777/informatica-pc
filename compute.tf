@@ -35,7 +35,7 @@ resource "oci_core_instance" "pc_instance" {
     depends_on = ["oci_database_db_system.domain_db_system"]
     count = "${var.pc_instance_node_count}"
     #Required
-    availability_domain = "${var.db_system_availability_domain}"
+    availability_domain = "${lookup(data.oci_identity_availability_domains.availability_domains.availability_domains[0], "name")}"
     compartment_id = "${var.tenancy_ocid}"
     shape = "${var.pc_instance_shape}"
 
