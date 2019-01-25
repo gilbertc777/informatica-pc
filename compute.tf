@@ -40,6 +40,12 @@ resource "oci_core_instance" "pc_instance" {
     shape = "${var.pc_instance_shape}"
 
     display_name = "${var.pc_instance_display_name}"
+    
+    create_vnic_details {
+        #Required
+        subnet_id = "${oci_core_subnet.subnet.id}"
+    }
+
     metadata {
         ssh_authorized_keys = "${tls_private_key.key.public_key_openssh}"
     }
