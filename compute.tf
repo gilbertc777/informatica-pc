@@ -58,7 +58,7 @@ resource "oci_core_instance" "pc_instance" {
 }
 
 # Optional Power Center instances
-resource "oci_core_instance" "pc_instance" {
+resource "oci_core_instance" "pc_instance_worker" {
     depends_on = ["oci_database_db_system.domain_db_system", "oci_core_instance.pc_instance"]
     count = "${var.pc_instance_worker_node_count}"
     #Required
