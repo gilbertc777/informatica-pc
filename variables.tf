@@ -105,7 +105,12 @@ variable "pc_instance_shape" {
 
 variable "pc_instance_display_name" {
     type    = "string"
-    default = "pc-test-vm"
+    default = "InfPC-Master"
+}
+
+variable "pc_instance_worker_display_name" {
+    type    = "string"
+    default = "InfPC-worker" 
 }
 
 variable "pc_instance_imageid" {
@@ -113,9 +118,9 @@ variable "pc_instance_imageid" {
     default = "ocid1.image.oc1.iad.aaaaaaaa2ptbgaxr64uxz5m6cxpv5mpiv66pgsnlgyu3ugctpf7xsr2q6o6a"
 }
 
-variable "pc_instance_node_count" {
+variable "pc_instance_worker_node_count" {
     type    = "string"
-    default = "1"
+    default = "0"
 }
 
 variable "bootstrap_file_name" {
