@@ -36,7 +36,6 @@ resource "oci_core_instance" "pc_instance" {
     availability_domain = "${lookup(data.oci_identity_availability_domains.availability_domains.availability_domains[0], "name")}"
     compartment_id = "${var.compartment_ocid}"
     shape = "${var.pc_instance_shape}"
-
     display_name = "${var.pc_instance_display_name}"
     
     create_vnic_details {
@@ -57,12 +56,9 @@ resource "oci_core_instance" "pc_instance" {
 resource "oci_core_instance" "pc_instance_worker" {
     depends_on = ["oci_database_db_system.domain_db_system", "oci_core_instance.pc_instance"]
     count = "${var.pc_instance_worker_node_count}"
-    #Required
     availability_domain = "${lookup(data.oci_identity_availability_domains.availability_domains.availability_domains[0], "name")}"
     compartment_id = "${var.compartment_ocid}"
     shape = "${var.pc_instance_shape}"
-
-    # Set dynamic display name based on count of additional resources
     display_name = "${var.pc_instance_worker_display_name}-${count.index}"
     
     create_vnic_details {
