@@ -36,7 +36,7 @@ resource "oci_core_instance" "pc_instance" {
     count = "${var.pc_instance_node_count}"
     #Required
     availability_domain = "${lookup(data.oci_identity_availability_domains.availability_domains.availability_domains[0], "name")}"
-    compartment_id = "${var.tenancy_ocid}"
+    compartment_id = "${var.compartment_ocid}"
     shape = "${var.pc_instance_shape}"
 
     display_name = "${var.pc_instance_display_name}"
