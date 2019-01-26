@@ -40,7 +40,17 @@ data "oci_database_db_home_patch_history_entries" "patches_history" {
   db_home_id = "${data.oci_database_db_homes.db_homes.db_homes.0.db_home_id}"
 }
 
-data "oci_database_db_versions" "test_db_versions_by_db_system_id" {
+data "oci_database_db_versions" "db_versions_by_db_system_id" {
   compartment_id = "${var.compartment_ocid}"
   db_system_id   = "${oci_database_db_system.domain_db_system.id}"
+}
+
+data "oci_database_db_system_shapes" "db_system_shapes" {
+  availability_domain = "${lookup(data.oci_identity_availability_domains.availability_domains.availability_domains[0], "name")}"
+  compartment_id      = "${var.compartment_ocid}"
+
+  filter {
+    name   = "shape"
+    values = ["${var.db_system_shape}"]
+  }
 }
