@@ -9,7 +9,7 @@ resource "oci_file_storage_export" "fss1_export1" {
   path           = "/export1"
 
     export_options { 
-      source = "${oci_core_vcn.virtual_network.cidr_block}"
+      source = "${oci_core_virtual_network.virtual_network.cidr_block}"
       access = "READ_WRITE"
       identity_squash = "NONE"
       require_privileged_source_port = false

@@ -6,7 +6,6 @@ resource "oci_database_db_system" "domain_db_system" {
     
     db_home {
         database {
-            #Required
             admin_password = "${var.db_home_database_admin_password}"
             db_name = "${var.db_home_database_db_name}"
             pdb_name = "${var.db_home_database_pdb_name}"
@@ -34,7 +33,6 @@ resource "oci_database_db_system" "domain_db_system" {
 # Master Powercenter Server
 resource "oci_core_instance" "pc_instance" {
     depends_on = ["oci_database_db_system.domain_db_system"]
-    #Required
     availability_domain = "${lookup(data.oci_identity_availability_domains.availability_domains.availability_domains[0], "name")}"
     compartment_id = "${var.compartment_ocid}"
     shape = "${var.pc_instance_shape}"
@@ -42,7 +40,6 @@ resource "oci_core_instance" "pc_instance" {
     display_name = "${var.pc_instance_display_name}"
     
     create_vnic_details {
-        #Required
         subnet_id = "${oci_core_subnet.subnet.id}"
     }
 
@@ -50,7 +47,6 @@ resource "oci_core_instance" "pc_instance" {
         ssh_authorized_keys = "${tls_private_key.key.public_key_openssh}"
     }
     source_details {
-        #Required
         source_id = "${var.pc_instance_imageid}"
         source_type = "image"
     }
@@ -70,7 +66,6 @@ resource "oci_core_instance" "pc_instance_worker" {
     display_name = "${var.pc_instance_worker_display_name}-${count.index}"
     
     create_vnic_details {
-        #Required
         subnet_id = "${oci_core_subnet.subnet.id}"
     }
 
@@ -78,7 +73,6 @@ resource "oci_core_instance" "pc_instance_worker" {
         ssh_authorized_keys = "${tls_private_key.key.public_key_openssh}"
     }
     source_details {
-        #Required
         source_id = "${var.pc_instance_imageid}"
         source_type = "image"
     }
