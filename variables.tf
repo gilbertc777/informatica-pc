@@ -31,70 +31,24 @@ variable "dns_label" {
     default = "infpc"
 }
 
-# Database Defaults
-variable "db_database_edition" {
-    type    = "string"
-    default = "ENTERPRISE_EDITION_EXTREME_PERFORMANCE"
-}
-
-variable "db_home_database_admin_password" {
-    type = "string"
-    default = "#Password123456#Password123456"
-}
-
-variable "db_home_database_db_name" {
-    type    = "string"
-    default = "pc"
-}
-
-variable "db_home_database_db_workload" {
-    type    = "string"
-    default = "OLTP"
-}
-
-variable "db_home_database_pdb_name" {
-    type    = "string"
-    default = "pdbpc"
-}
-
-variable "db_home_db_version" {
-    type    = "string"
-    default = "12.2.0.1"
-}
-
-variable "db_home_display_name" {
-    type    = "string"
-    default = "pdb"
-}
-
-variable "db_hostname" {
-    type    = "string"
-    default = "pcdb-host"
-}
-
-variable "db_shape" {
-    type    = "string"
-    default = "VM.Standard2.8"
-}
-
-variable "db_data_storage_size_in_gb" {
-    type    = "string"
-    default = "512"
-}
-
-variable "db_license_model" {
-    type    = "string"
-    default = "BRING_YOUR_OWN_LICENSE"
-}
-
-variable "db_node_count" {
-    type    = "string"
-    default = "2"
-}
-
-variable "db_disk_redundancy" {
-    type    = "string"
-    default = "HIGH"
+# Database Default Values
+variable dbs {
+    type    = "map"
+    default = {
+        db_database_edition = "ENTERPRISE_EDITION_EXTREME_PERFORMANCE"
+        db_home_database_admin_password = "#Password123456#Password123456"
+        db_home_database_db_name = "pc"
+        db_home_database_db_workload = "OLTP"
+        db_home_database_pdb_name = "pdbpc"
+        db_home_db_version = "12.2.0.1"
+        db_home_display_name = "pdb"
+        db_hostname = "pcdb-host"
+        db_shape = "VM.Standard2.8"
+        db_data_storage_size_in_gb = "512"
+        db_license_model = "BRING_YOUR_OWN_LICENSE"
+        db_node_count = "2"
+        db_disk_redundancy = "HIGH"
+    } 
 }
 
 # Simple Powercenter VM

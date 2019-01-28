@@ -35,7 +35,7 @@ echo domain_host_name $domain_host_name
 
 echo ""
 echo ""
-exit 1
+exit 0
 
 ####
 
