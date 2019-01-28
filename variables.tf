@@ -105,12 +105,12 @@ variable "pc_instance_shape" {
 
 variable "pc_instance_display_name" {
     type    = "string"
-    default = "InfPC-Master"
+    default = "infpc-master"
 }
 
 variable "pc_instance_worker_display_name" {
     type    = "string"
-    default = "InfPC-worker" 
+    default = "intpc-worker" 
 }
 
 variable "pc_instance_imageid" {

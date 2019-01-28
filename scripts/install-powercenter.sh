@@ -10,10 +10,8 @@ echo "Running powercenter.sh"
 
 echo "Got the parameters:"
 echo public_url $public_url
-echo db_host_name $db_host_name
-echo pdb_name $pdb_name
-echo host_domain_name $host_domain_name
 echo admin_console_password $admin_console_password
+echo master_db_password $master_db_password
 echo infra_passphrase $infra_passphrase
 echo create_domain $create_domain
 echo join_domain $join_domain
@@ -23,8 +21,10 @@ echo domain_user_name $domain_user_name
 echo db_type $db_type
 echo repository_service_name $repository_service_name
 echo integration_service_name $integration_service_name
+echo db_host_name $db_host_name
 echo db_port $db_port
 echo db_uname $db_uname
+echo pdb_name.host_domain_name $pdb_name.$host_domain_name
 echo domain_name $domain_name
 echo node_name $node_name
 echo grid_name $grid_name

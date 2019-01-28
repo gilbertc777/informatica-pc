@@ -47,5 +47,5 @@ resource "oci_core_subnet" "subnet" {
   route_table_id      = "${oci_core_route_table.route_table.id}"
   security_list_ids   = ["${oci_core_security_list.security_list.id}"]
   dhcp_options_id     = "${oci_core_virtual_network.virtual_network.default_dhcp_options_id}"
-  dns_label           = "${var.dns_label}"
+  dns_label           = "sn1"
 }
