@@ -7,7 +7,7 @@ resource "oci_file_storage_file_system" "fss1" {
 resource "oci_file_storage_export" "fss1_export1" {
   export_set_id  = "${oci_file_storage_export_set.fss1_exportset1.id}"
   file_system_id = "${oci_file_storage_file_system.fss1.id}"
-  path           = "/export1"
+  path           = "${var.fss_export_path}"
 
     export_options { 
       source                          = "${oci_core_virtual_network.virtual_network.cidr_block}"

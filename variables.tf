@@ -123,6 +123,11 @@ variable "pc_instance_worker_node_count" {
     default = "0"
 }
 
+variable "fss_export_path" {
+    type    = "string"
+    default = "/exports"
+}
+
 variable "fss_mountpoint" {
     type    = "string"
     default ="/fss"
