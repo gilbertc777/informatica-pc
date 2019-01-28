@@ -1,13 +1,13 @@
 resource "oci_file_storage_file_system" "fss1" {
   availability_domain = "${lookup(data.oci_identity_availability_domains.availability_domains.availability_domains[0], "name")}"
   compartment_id      = "${var.compartment_ocid}"
-  display_name        = "${var.pcvm["pc_instance_display_name"]}_fss1"
+  display_name        = "${var.pcvm["instance_display_name"]}_fss1"
 }
 
 resource "oci_file_storage_export" "fss1_export1" {
   export_set_id  = "${oci_file_storage_export_set.fss1_exportset1.id}"
   file_system_id = "${oci_file_storage_file_system.fss1.id}"
-  path           = "${var.fss_config["fss_export_path"]}"
+  path           = "${var.fss_config["export_path"]}"
 
     export_options { 
       source                          = "${oci_core_virtual_network.virtual_network.cidr_block}"
@@ -29,5 +29,5 @@ resource "oci_file_storage_mount_target" "fss1_mt1" {
   availability_domain = "${lookup(data.oci_identity_availability_domains.availability_domains.availability_domains[0], "name")}"
   compartment_id      = "${var.compartment_ocid}"
   subnet_id           = "${oci_core_subnet.subnet.id}"
-  display_name        = "${var.pcvm["pc_instance_display_name"]}_fss1_mt_1"
+  display_name        = "${var.pcvm["instance_display_name"]}_fss1_mt_1"
 }

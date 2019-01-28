@@ -26,19 +26,19 @@ variable "dns_label" {
 variable dbs {
     type    = "map"
     default = {
-        db_database_edition             = "ENTERPRISE_EDITION_EXTREME_PERFORMANCE"
-        db_home_database_admin_password = "#Password123456#Password123456"
-        db_home_database_db_name        = "pc"
-        db_home_database_db_workload    = "OLTP"
-        db_home_database_pdb_name       = "pdbpc"
-        db_home_db_version              = "12.2.0.1"
-        db_home_display_name            = "pdb"
-        db_hostname                     = "pcdb-host"
-        db_shape                        = "VM.Standard2.8"
-        db_data_storage_size_in_gb      = "512"
-        db_license_model                = "BRING_YOUR_OWN_LICENSE"
-        db_node_count                   = "2"
-        db_disk_redundancy              = "HIGH"
+        database_edition             = "ENTERPRISE_EDITION_EXTREME_PERFORMANCE"
+        home_database_admin_password = "#Password123456#Password123456"
+        home_database_db_name        = "pc"
+        home_database_db_workload    = "OLTP"
+        home_database_pdb_name       = "pdbpc"
+        home_db_version              = "12.2.0.1"
+        home_display_name            = "pdb"
+        hostname                     = "pcdb-host"
+        shape                        = "VM.Standard2.8"
+        data_storage_size_in_gb      = "512"
+        license_model                = "BRING_YOUR_OWN_LICENSE"
+        node_count                   = "2"
+        disk_redundancy              = "HIGH"
     } 
 }
 
@@ -46,11 +46,11 @@ variable dbs {
 variable pcvm {
     type = "map"
     default = {
-        pc_instance_shape               = "VM.Standard2.4"
-        pc_instance_display_name        = "infpc-master"
-        pc_instance_worker_display_name = "infpc-worker"
-        pc_instance_imageid             = "ocid1.image.oc1.iad.aaaaaaaa2ptbgaxr64uxz5m6cxpv5mpiv66pgsnlgyu3ugctpf7xsr2q6o6a"
-        pc_instance_worker_node_count   = "0"
+        instance_shape               = "VM.Standard2.4"
+        instance_display_name        = "infpc-master"
+        instance_worker_display_name = "infpc-worker"
+        instance_imageid             = "ocid1.image.oc1.iad.aaaaaaaa2ptbgaxr64uxz5m6cxpv5mpiv66pgsnlgyu3ugctpf7xsr2q6o6a"
+        instance_worker_node_count   = "0"
 
 
     }
@@ -60,8 +60,8 @@ variable pcvm {
 variable fss_config {
     type = "map"
     default = {
-        fss_export_path = "/export1"
-        fss_mountpoint  = "/fss"
+        export_path = "/export1"
+        mountpoint  = "/fss"
     }
 }
 
