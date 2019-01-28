@@ -84,7 +84,7 @@ resource "oci_core_instance" "pc_instance" {
     provisioner "remote-exec" {
         inline = [
             "export mount_target_ip=${lookup(data.oci_core_private_ips.fss1_mt_1_ip.private_ips[0], "ip_address")}",
-            "export export_name=${oci_file_storage_file_system.fss1.path}",
+            "export export_name=${var.fss_export_path}",
             "export mount_point=${var.fss_mountpoint}"
         ]
         connection {
@@ -146,4 +146,20 @@ resource "oci_core_instance" "pc_instance_worker" {
 			timeout	 = "5m"
   		}		
 	}
+
+    # Mount FSS
+    provisioner "remote-exec" {
+        inline = [
+            "export mount_target_ip=${lookup(data.oci_core_private_ips.fss1_mt_1_ip.private_ips[0], "ip_address")}",
+            "export export_name=${var.fss_export_path}",
+            "export mount_point=${var.fss_mountpoint}"
+        ]
+        connection {
+            host 	 = "${oci_core_instance.pc_instance.public_ip}"
+    		type     = "ssh"
+    		user     = "opc"
+    		private_key = "${tls_private_key.key.private_key_pem}"
+			timeout	 = "5m"
+  		}
+    }
 }
