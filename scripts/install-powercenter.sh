@@ -24,7 +24,7 @@ echo integration_service_name $integration_service_name
 echo db_host_name $db_host_name
 echo db_port $db_port
 echo db_uname $db_uname
-echo pdb_name.host_domain_name $pdb_name.$host_domain_name
+echo db_servicename $db_servicename
 echo domain_name $domain_name
 echo node_name $node_name
 echo grid_name $grid_name
@@ -32,6 +32,10 @@ echo repo_user $repo_user
 echo informatica_services $informatica_services
 echo join_node_name $join_node_name
 echo domain_host_name $domain_host_name
+
+echo ""
+echo ""
+exit 1
 
 ####
 
@@ -64,7 +68,7 @@ export INTEGRATION_SERVICE_NAME=$integration_service_name
 export DB_ADDRESS=$db_host_name
 export DB_PORT=$db_port
 export DB_UNAME=$db_uname
-export DB_SERVICENAME=$pdb_name.$host_domain_name
+export DB_SERVICENAME=$db_servicename
 export DOMAIN_NAME=$domain_name
 export NODE_NAME=$node_name
 export GRID_NAME=$grid_name
