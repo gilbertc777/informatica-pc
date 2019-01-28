@@ -83,7 +83,7 @@ resource "oci_core_instance" "pc_instance" {
     # Mount FSS
     provisioner "remote-exec" {
         inline = [
-            "export mount_target_ip=${var.mount_target_1_ip_address}",
+            "export mount_target_ip=${lookup(data.oci_core_private_ips.fss1_mt_1_ip.private_ips[0], "ip_address")}",
             "export export_name=${oci_file_storage_file_system.fss1.path}",
             "export mount_point=${var.fss_mountpoint}"
         ]

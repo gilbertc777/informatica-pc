@@ -40,7 +40,3 @@ data "oci_core_private_ips" "fss1_mt_1_ip" {
     values = ["${oci_file_storage_mount_target.fss1_mt1.private_ip_ids.0}"]
   }
 }
-
-locals {
-  mount_target_1_ip_address = "${lookup(data.oci_core_private_ips.fss1_mt_1_ip.private_ips[0], "ip_address")}"
-}
