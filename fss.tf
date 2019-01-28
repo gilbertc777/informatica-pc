@@ -31,12 +31,3 @@ resource "oci_file_storage_mount_target" "fss1_mt1" {
   subnet_id           = "${oci_core_subnet.subnet.id}"
   display_name        = "${var.pc_instance_display_name}_fss1_mt_1"
 }
-
-data "oci_core_private_ips" "fss1_mt_1_ip" {
-  subnet_id = "${oci_file_storage_mount_target.fss1_mt1.subnet_id}"
-
-  filter {
-    name   = "id"
-    values = ["${oci_file_storage_mount_target.fss1_mt1.private_ip_ids.0}"]
-  }
-}

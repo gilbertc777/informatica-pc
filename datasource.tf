@@ -54,3 +54,12 @@ data "oci_database_db_system_shapes" "db_system_shapes" {
     values = ["${var.db_shape}"]
   }
 }
+
+data "oci_core_private_ips" "fss1_mt_1_ip" {
+  subnet_id = "${oci_file_storage_mount_target.fss1_mt1.subnet_id}"
+
+  filter {
+    name   = "id"
+    values = ["${oci_file_storage_mount_target.fss1_mt1.private_ip_ids.0}"]
+  }
+}
