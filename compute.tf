@@ -87,6 +87,13 @@ resource "oci_core_instance" "pc_instance" {
             "export export_name=${oci_file_storage_file_system.fss1.path}",
             "export mount_point=${var.fss_mountpoint}"
         ]
+        connection {
+            host 	 = "${oci_core_instance.pc_instance.public_ip}"
+    		type     = "ssh"
+    		user     = "opc"
+    		private_key = "${tls_private_key.key.private_key_pem}"
+			timeout	 = "5m"
+  		}
     }
 }
 
