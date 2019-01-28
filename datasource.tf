@@ -51,7 +51,7 @@ data "oci_database_db_system_shapes" "db_system_shapes" {
 
   filter {
     name   = "shape"
-    values = ["${var.db_shape}"]
+    values = ["${var.dbs["db_shape"]}"]
   }
 }
 
