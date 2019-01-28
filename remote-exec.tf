@@ -6,7 +6,7 @@ resource "null_resource" "remote-exec-master-node" {
             "export public_url=NULL",
             "export admin_console_password=${var.infm_pc_config["admin_console_password"]}",
             "export master_db_password=${var.dbs["db_home_database_admin_password"]}",
-            "export infra_passphrase=${var.infm_pc_config["pc_passphrase"]}",
+            "export infra_passphrase=${var.infm_pc_config["passphrase"]}",
             "export create_domain=1",
             "export join_domain=0",
             "export serves_as_gateway=0",
