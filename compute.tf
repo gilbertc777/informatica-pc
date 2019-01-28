@@ -41,8 +41,8 @@ resource "oci_core_instance" "pc_instance" {
   		inline = [
             "chmod -R 755 /home/opc/scripts",
             "export mount_target_ip=${lookup(data.oci_core_private_ips.fss1_mt_1_ip.private_ips[0], "ip_address")}",
-            "export export_name=${var.fss_config["fss_export_path"]}",
-            "export mount_point=${var.fss_config["fss_mountpoint"]}",
+            "export export_name=${var.fssconfig["fss_export_path"]}",
+            "export mount_point=${var.fssconfig["fss_mountpoint"]}",
             "/home/opc/scripts/mount-fss.sh"
           ]
 

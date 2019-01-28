@@ -57,7 +57,7 @@ variable pcvm {
 }
 
 # FSS Filesystem Config Defaults
-variable fss_config {
+variable fssconfig {
     type = "map"
     default = {
         fss_export_path="/export1"
@@ -66,7 +66,7 @@ variable fss_config {
 }
 
 # Powercenter configuration variables
-variable infmpc_config {
+variable infmpcconfig {
     type = "map"
     defautlt = {
         grid_name="PCGRID"
