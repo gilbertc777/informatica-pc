@@ -43,6 +43,6 @@ sudo mkdir -p ${mount_point}
 sudo mount ${mount_target_ip}:${export_name} ${mount_point}
 
 # Setup permanent mount params in /etc/fstab
-echo "${mount_target_ip}:${export_name} ${mount_point}  nfs defaults,relatime 0 0" >> /etc/fstab | sudo bash
+sudo "echo \"${mount_target_ip}:${export_name} ${mount_point}  nfs defaults,relatime 0 0\" >> /etc/fstab"
 
 # end of script
