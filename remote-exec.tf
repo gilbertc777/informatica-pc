@@ -5,7 +5,7 @@ resource "null_resource" "remote-exec-master-node" {
         inline = [
             "export public_url=NULL",
             "export admin_console_password=${var.infm_pc_config["admin_console_password"]}",
-            "export master_db_password=${var.dbs["db_home_database_admin_password"]}",
+            "export master_db_password=${var.dbs["home_database_admin_password"]}",
             "export infra_passphrase=${var.infm_pc_config["passphrase"]}",
             "export create_domain=1",
             "export join_domain=0",
@@ -15,17 +15,17 @@ resource "null_resource" "remote-exec-master-node" {
             "export db_type=Oracle",
             "export repository_service_name=${var.infm_pc_config["repo_service_name"]}",
             "export integration_service_name=${var.infm_pc_config["int_service_name"]}",
-            "export db_host_name=${var.dbs["db_hostname"]}",
+            "export db_host_name=${var.dbs["hostname"]}",
             "export db_port=1521",
             "export db_uname=usr7",
-            "export db_servicename=${var.dbs["db_home_database_pdb_name"]}.${oci_core_subnet.subnet.dns_label}.${oci_core_virtual_network.virtual_network.dns_label}.oraclevcn.com",
+            "export db_servicename=${var.dbs["home_database_pdb_name"]}.${oci_core_subnet.subnet.dns_label}.${oci_core_virtual_network.virtual_network.dns_label}.oraclevcn.com",
             "export domain_name=InfraDomain",
             "export node_name=${oci_core_instance.pc_instance.hostname_label}",
             "export grid_name=${var.infm_pc_config["grid_name"]}",
             "export repo_user=usr8",
             "export informatica_services=2",
             "export join_node_name=NotApplicable",
-            "export domain_host_name=${var.pcvm["pc_instance_display_name"]}",
+            "export domain_host_name=${var.pcvm["instance_display_name"]}",
             "/home/opc/scripts/install-powercenter.sh > /home/opc/pc_install.log"
         ]
         connection {

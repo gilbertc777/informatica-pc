@@ -4,19 +4,19 @@ resource "oci_core_instance" "pc_instance" {
     depends_on          = ["oci_database_db_system.domain_db_system"]
     availability_domain = "${lookup(data.oci_identity_availability_domains.availability_domains.availability_domains[0], "name")}"
     compartment_id      = "${var.compartment_ocid}"
-    shape               = "${var.pcvm["pc_instance_shape"]}"
-    display_name        = "${var.pcvm["pc_instance_display_name"]}"
+    shape               = "${var.pcvm["instance_shape"]}"
+    display_name        = "${var.pcvm["instance_display_name"]}"
     
     create_vnic_details {
         subnet_id       = "${oci_core_subnet.subnet.id}"
-        hostname_label  ="${var.pcvm["pc_instance_display_name"]}"
+        hostname_label  ="${var.pcvm["instance_display_name"]}"
     }
 
     metadata {
         ssh_authorized_keys = "${tls_private_key.key.public_key_openssh}"
     }
     source_details {
-        source_id   = "${var.pcvm["pc_instance_imageid"]}"
+        source_id   = "${var.pcvm["instance_imageid"]}"
         source_type = "image"
     }
     preserve_boot_volume = false
@@ -41,8 +41,8 @@ resource "oci_core_instance" "pc_instance" {
   		inline = [
             "chmod -R 755 /home/opc/scripts",
             "export mount_target_ip=${lookup(data.oci_core_private_ips.fss1_mt_1_ip.private_ips[0], "ip_address")}",
-            "export export_name=${var.fss_config["fss_export_path"]}",
-            "export mount_point=${var.fss_config["fss_mountpoint"]}",
+            "export export_name=${var.fss_config["export_path"]}",
+            "export mount_point=${var.fss_config["mountpoint"]}",
             "/home/opc/scripts/mount-fss.sh"
           ]
 
