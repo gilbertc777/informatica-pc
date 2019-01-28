@@ -34,15 +34,15 @@ fi
 
 # With all variables set, mount filesystem
 # Install nfs-utils
-sudo yum -y install nfs-utils > nfs-utils-install.log
+yum -y install nfs-utils > nfs-utils-install.log
     
 # create mount point
-sudo mkdir -p ${mount_point}
+mkdir -p ${mount_point}
     
 # Perform one time mount of filesystem
-sudo mount ${mount_target_ip}:${export_name} ${mount_point}
+mount ${mount_target_ip}:${export_name} ${mount_point}
 
 # Setup permanent mount params in /etc/fstab
-sudo "echo \"${mount_target_ip}:${export_name} ${mount_point}  nfs defaults,relatime 0 0\" >> /etc/fstab"
+echo "${mount_target_ip}:${export_name} ${mount_point}  nfs defaults,relatime 0 0" >> /etc/fstab
 
 # end of script
