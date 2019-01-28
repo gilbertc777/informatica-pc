@@ -1,54 +1,22 @@
-# Powercenter DB resource
-resource "oci_database_db_system" "domain_db_system" {
-    availability_domain = "${lookup(data.oci_identity_availability_domains.availability_domains.availability_domains[0], "name")}"
-    compartment_id      = "${var.compartment_ocid}"
-    database_edition    = "${var.dbs["db_database_edition"]}"
-    
-    db_home {
-        database {
-            admin_password = "${var.dbs["db_home_database_admin_password"]}"
-            db_name = "${var.dbs["db_home_database_db_name"]}"
-            pdb_name = "${var.dbs["db_home_database_pdb_name"]}"
-            db_workload = "${var.dbs["db_home_database_db_workload"]}"
-        }
-        db_version = "${var.dbs["db_home_db_version"]}"
-        display_name = "${var.dbs["db_home_display_name"]}"
-    }
-    cpu_core_count = "${lookup(data.oci_database_db_system_shapes.db_system_shapes.db_system_shapes[0], "available_core_count")}"
-    disk_redundancy = "${var.dbs["db_disk_redundancy"]}"
-    hostname = "${var.dbs["db_hostname"]}"
-    shape = "${var.dbs["db_shape"]}"
-    ssh_public_keys = ["${tls_private_key.key.public_key_openssh}"]
-    subnet_id = "${oci_core_subnet.subnet.id}"
-    data_storage_size_in_gb = "${var.dbs["db_data_storage_size_in_gb"]}"
-    license_model = "${var.dbs["db_license_model"]}"
-    node_count = "${var.dbs["db_node_count"]}"
-
-    timeouts {
-        create = "2h"
-        delete = "2h"
-    }
-}
-
 # Powercenter Compute Resources
 # Master Powercenter Server
 resource "oci_core_instance" "pc_instance" {
-    depends_on = ["oci_database_db_system.domain_db_system"]
+    depends_on          = ["oci_database_db_system.domain_db_system"]
     availability_domain = "${lookup(data.oci_identity_availability_domains.availability_domains.availability_domains[0], "name")}"
-    compartment_id = "${var.compartment_ocid}"
-    shape = "${var.pc_instance_shape}"
-    display_name = "${var.pc_instance_display_name}"
+    compartment_id      = "${var.compartment_ocid}"
+    shape               = "${var.pcvm["pc_instance_shape"]}"
+    display_name        = "${var.pcvm["pc_instance_display_name"]}"
     
     create_vnic_details {
-        subnet_id = "${oci_core_subnet.subnet.id}"
-        hostname_label="${var.pc_instance_display_name}"
+        subnet_id       = "${oci_core_subnet.subnet.id}"
+        hostname_label  ="${var.pcvm["pc_instance_display_name"]}"
     }
 
     metadata {
         ssh_authorized_keys = "${tls_private_key.key.public_key_openssh}"
     }
     source_details {
-        source_id = "${var.pc_instance_imageid}"
+        source_id   = "${var.pcvm["pc_instance_imageid"]}"
         source_type = "image"
     }
     preserve_boot_volume = false
@@ -59,11 +27,11 @@ resource "oci_core_instance" "pc_instance" {
   		destination = "/home/opc"
 
   		connection {
-            host 	 = "${oci_core_instance.pc_instance.public_ip}"
-    		type     = "ssh"
-    		user     = "opc"
+            host 	    = "${oci_core_instance.pc_instance.public_ip}"
+    		type        = "ssh"
+    		user        = "opc"
     		private_key = "${tls_private_key.key.private_key_pem}"
-			timeout	 = "5m"
+			timeout	    = "5m"
   		}		
 	}
 
@@ -73,17 +41,17 @@ resource "oci_core_instance" "pc_instance" {
   		inline = [
             "chmod -R 755 /home/opc/scripts",
             "export mount_target_ip=${lookup(data.oci_core_private_ips.fss1_mt_1_ip.private_ips[0], "ip_address")}",
-            "export export_name=${var.fss_export_path}",
-            "export mount_point=${var.fss_mountpoint}",
+            "export export_name=${var.fss_config["fss_export_path"]}",
+            "export mount_point=${var.fss_config["fss_mountpoint"]}",
             "/home/opc/scripts/mount-fss.sh"
           ]
 
   		connection {
-            host 	 = "${oci_core_instance.pc_instance.public_ip}"
-    		type     = "ssh"
-    		user     = "opc"
+            host 	    = "${oci_core_instance.pc_instance.public_ip}"
+    		type        = "ssh"
+    		user        = "opc"
     		private_key = "${tls_private_key.key.private_key_pem}"
-			timeout	 = "5m"
+			timeout	    = "5m"
   		}		
 	}
 }

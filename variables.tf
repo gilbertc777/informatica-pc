@@ -1,7 +1,3 @@
-# ---------------------------------------------------------------------------------------------------------------------
-# Environmental variables
-# You probably want to define these as environmental variables.
-# ---------------------------------------------------------------------------------------------------------------------
 
 # Required by the OCI Provider
 variable "tenancy_ocid" {}
@@ -15,11 +11,6 @@ variable "region" {}
 variable "ssh_public_key" {}
 variable "ssh_private_key" {}
 
-# ---------------------------------------------------------------------------------------------------------------------
-# Optional variables
-# The defaults here will give you a cluster.  You can also modify these.
-# ---------------------------------------------------------------------------------------------------------------------
-
 # Network Defaults
 variable "cidr_block" {
     type = "string"
@@ -31,7 +22,7 @@ variable "dns_label" {
     default = "infpc"
 }
 
-# Database Default Values
+# Database System Default Values
 variable dbs {
     type    = "map"
     default = {
@@ -51,74 +42,39 @@ variable dbs {
     } 
 }
 
-# Simple Powercenter VM
-variable "pc_instance_shape" {
-    type    = "string"
-    default = "VM.Standard2.4" 
+# Powercenter VM Shape Defaults
+variable pcvm {
+    type = "map"
+    default = {
+        pc_instance_shape = "VM.Standard2.4"
+        pc_instance_display_name = "infpc-master"
+        pc_instance_worker_display_name = "infpc-worker"
+        pc_instance_imageid = "ocid1.image.oc1.iad.aaaaaaaa2ptbgaxr64uxz5m6cxpv5mpiv66pgsnlgyu3ugctpf7xsr2q6o6a"
+        pc_instance_worker_node_count = "0"
+
+
+    }
 }
 
-variable "pc_instance_display_name" {
-    type    = "string"
-    default = "infpc-master"
-}
-
-variable "pc_instance_worker_display_name" {
-    type    = "string"
-    default = "intpc-worker" 
-}
-
-variable "pc_instance_imageid" {
-    type    = "string"
-    default = "ocid1.image.oc1.iad.aaaaaaaa2ptbgaxr64uxz5m6cxpv5mpiv66pgsnlgyu3ugctpf7xsr2q6o6a"
-}
-
-variable "pc_instance_worker_node_count" {
-    type    = "string"
-    default = "0"
-}
-
-variable "fss_export_path" {
-    type    = "string"
-    default = "/export1"
-}
-
-variable "fss_mountpoint" {
-    type    = "string"
-    default ="/fss"
+# FSS Filesystem Config Defaults
+variable fss_config {
+    type = "map"
+    default = {
+        fss_export_path="/export1"
+        fss_mountpoint="/fss"
+    }
 }
 
 # Powercenter configuration variables
-variable "grid_name" {
-    type    = "string"
-    default = "PCGRID"
-}
+variable infmpc_config {
+    type = "map"
+    defautlt = {
+        grid_name="PCGRID"
+        admin_console_password = "password1234%%"
+        infra_pc_passphrase = "password1234%%"
+        domain_user_name = "Domain"
+        pc_repo_service_name = "PCRS"
+        pc_int_service_name = "PCIS"
 
-variable "admin_console_password" {
-    type    = "string"
-    default = "password1234%%"
-}
-
-variable "infra_pc_passphrase" {
-    type    = "string"
-    default = "password1234%%"
-}
-
-variable "domain_user_name" {
-    type    = "string"
-    default = "Domain"
-}
-
-variable "pc_repo_service_name" {
-    type    = "string"
-    default = "PCRS"
-}
-
-variable "pc_int_service_name" {
-    type    = "string"
-    default = "PCIS"
-}
-
-variable "bootstrap_file_name" {
-    type    = "string"
-    default = "../scripts/powercenter.sh"
+    }
 }
