@@ -5,7 +5,7 @@ resource "null_resource" "remote-exec-master-node" {
         inline = [
             "export public_url=NULL",
             "export admin_console_password=${var.admin_console_password}",
-            "export master_db_password=${var.dbs["db_home_database_admin_password}"]",
+            "export master_db_password=${var.dbs["db_home_database_admin_password"]}",
             "export infra_passphrase=${var.infra_pc_passphrase}",
             "export create_domain=1",
             "export join_domain=0",
@@ -15,7 +15,7 @@ resource "null_resource" "remote-exec-master-node" {
             "export db_type=Oracle",
             "export repository_service_name=${var.pc_repo_service_name}",
             "export integration_service_name=${var.pc_int_service_name}",
-            "export db_host_name=${var.dbs["db_hostname}"]",
+            "export db_host_name=${var.dbs["db_hostname"]}",
             "export db_port=1521",
             "export db_uname=usr7",
             "export db_servicename=${var.dbs["db_home_database_pdb_name"]}.${oci_core_subnet.subnet.dns_label}.${oci_core_virtual_network.virtual_network.dns_label}.oraclevcn.com",
