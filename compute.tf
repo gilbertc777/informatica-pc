@@ -14,7 +14,7 @@ resource "oci_database_db_system" "domain_db_system" {
         db_version = "${var.db_home_db_version}"
         display_name = "${var.db_home_display_name}"
     }
-    cpu_core_count = "${lookup(data.oci_database_db_system_shapes.db_system_shapes.db_system_shapes[0], "available_core_count")}"
+    cpu_core_count = "16"
     disk_redundancy = "${var.db_disk_redundancy}"
     hostname = "${var.db_hostname}"
     shape = "${var.db_shape}"
