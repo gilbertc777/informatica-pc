@@ -123,7 +123,12 @@ variable "pc_instance_worker_node_count" {
     default = "0"
 }
 
+variable "fss_mountpoint" {
+    type    = "string"
+    default ="/fss"
+}
+
 variable "bootstrap_file_name" {
-    type = "string"
+    type    = "string"
     default = "../scripts/powercenter.sh"
 }

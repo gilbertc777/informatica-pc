@@ -52,7 +52,7 @@ resource "oci_core_instance" "pc_instance" {
     }
     preserve_boot_volume = false
     
-    # Upload configuration scripts
+    # Upload configuration scripts and set executable
     provisioner "file" {
   		source      = "./scripts"
   		destination = "/home/opc"
@@ -65,6 +65,29 @@ resource "oci_core_instance" "pc_instance" {
 			timeout	 = "5m"
   		}		
 	}
+
+    provisioner "remote-exec" {
+  		inline = [
+              "chmod -R 755 /home/opc/scripts"
+          ]
+
+  		connection {
+            host 	 = "${oci_core_instance.pc_instance.public_ip}"
+    		type     = "ssh"
+    		user     = "opc"
+    		private_key = "${tls_private_key.key.private_key_pem}"
+			timeout	 = "5m"
+  		}		
+	}
+
+    # Mount FSS
+    provisioner "remote-exec" {
+        inline = [
+            "export mount_target_ip=${var.mount_target_1_ip_address}",
+            "export export_name=${oci_file_storage_file_system.fss1.path}",
+            "export mount_point=${var.fss_mountpoint}"
+        ]
+    }
 }
 
 # Optional Power Center instances
@@ -89,13 +112,27 @@ resource "oci_core_instance" "pc_instance_worker" {
     }
     preserve_boot_volume = false
 
-    # Upload configuration scripts
+    # Upload configuration scripts and set executable
     provisioner "file" {
   		source      = "./scripts"
   		destination = "/home/opc"
 
   		connection {
             host 	 = "${oci_core_instance.pc_instance_worker.public_ip}"
+    		type     = "ssh"
+    		user     = "opc"
+    		private_key = "${tls_private_key.key.private_key_pem}"
+			timeout	 = "5m"
+  		}		
+	}
+
+    provisioner "remote-exec" {
+  	    inline = [
+            "chmod -R 755 /home/opc/scripts"
+        ]
+
+  		connection {
+            host 	 = "${oci_core_instance.pc_instance.public_ip}"
     		type     = "ssh"
     		user     = "opc"
     		private_key = "${tls_private_key.key.private_key_pem}"
