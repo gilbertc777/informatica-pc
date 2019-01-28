@@ -85,7 +85,8 @@ resource "oci_core_instance" "pc_instance" {
         inline = [
             "export mount_target_ip=${lookup(data.oci_core_private_ips.fss1_mt_1_ip.private_ips[0], "ip_address")}",
             "export export_name=${var.fss_export_path}",
-            "export mount_point=${var.fss_mountpoint}"
+            "export mount_point=${var.fss_mountpoint}",
+            "/home/opc/scripts/mount-fss.sh"
         ]
         connection {
             host 	 = "${oci_core_instance.pc_instance.public_ip}"
