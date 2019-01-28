@@ -51,6 +51,20 @@ resource "oci_core_instance" "pc_instance" {
         source_type = "image"
     }
     preserve_boot_volume = false
+    
+    # Upload configuration scripts
+    provisioner "file" {
+  		source      = "./scripts"
+  		destination = "/home/opc"
+
+  		connection {
+            host 	 = "${oci_core_instance.pc_instance.public_ip}"
+    		type     = "ssh"
+    		user     = "opc"
+    		private_key = "${tls_private_key.key.private_key_pem}"
+			timeout	 = "5m"
+  		}		
+	}
 }
 
 # Optional Power Center instances
@@ -74,4 +88,18 @@ resource "oci_core_instance" "pc_instance_worker" {
         source_type = "image"
     }
     preserve_boot_volume = false
+
+    # Upload configuration scripts
+    provisioner "file" {
+  		source      = "./scripts"
+  		destination = "/home/opc"
+
+  		connection {
+            host 	 = "${oci_core_instance.pc_instance_worker.public_ip}"
+    		type     = "ssh"
+    		user     = "opc"
+    		private_key = "${tls_private_key.key.private_key_pem}"
+			timeout	 = "5m"
+  		}		
+	}
 }
