@@ -6,15 +6,15 @@ resource "null_resource" "remote-exec-master-node" {
             "export public_url=NULL",
             "export admin_console_password=${var.admin_console_password}",
             "export master_db_password=${var.dbs["db_home_database_admin_password"]}",
-            "export infra_passphrase=${var.infra_pc_passphrase}",
+            "export infra_passphrase=${var.infm_pc_config["pc_passphrase"]}",
             "export create_domain=1",
             "export join_domain=0",
             "export serves_as_gateway=0",
             "export single_node=0",
             "export domain_user_name=${var.domain_user_name}",
             "export db_type=Oracle",
-            "export repository_service_name=${var.pc_repo_service_name}",
-            "export integration_service_name=${var.pc_int_service_name}",
+            "export repository_service_name=${var.infm_pc_config["repo_service_name"]}",
+            "export integration_service_name=${var.infm_pc_config["int_service_name"]}",
             "export db_host_name=${var.dbs["db_hostname"]}",
             "export db_port=1521",
             "export db_uname=usr7",
@@ -25,7 +25,7 @@ resource "null_resource" "remote-exec-master-node" {
             "export repo_user=usr8",
             "export informatica_services=2",
             "export join_node_name=NotApplicable",
-            "export domain_host_name=${var.pc_instance_display_name}",
+            "export domain_host_name=${var.pcvm["pc_instance_display_name"]}",
             "/home/opc/scripts/install-powercenter.sh > /home/opc/pc_install.log"
         ]
         connection {

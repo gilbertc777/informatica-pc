@@ -57,7 +57,7 @@ variable pcvm {
 }
 
 # FSS Filesystem Config Defaults
-variable fssconfig {
+variable fss_config {
     type = "map"
     default = {
         fss_export_path="/export1"
@@ -66,15 +66,14 @@ variable fssconfig {
 }
 
 # Powercenter configuration variables
-variable infmpcconfig {
+variable infm_pc_config {
     type = "map"
-    defautlt = {
+    default = {
         grid_name="PCGRID"
         admin_console_password = "password1234%%"
         infra_pc_passphrase = "password1234%%"
         domain_user_name = "Domain"
         pc_repo_service_name = "PCRS"
         pc_int_service_name = "PCIS"
-
     }
 }
