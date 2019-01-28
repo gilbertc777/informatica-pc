@@ -133,6 +133,37 @@ variable "fss_mountpoint" {
     default ="/fss"
 }
 
+# Powercenter configuration variables
+variable "grid_name" {
+    type    = "string"
+    default = "PCGRID"
+}
+
+variable "admin_console_password" {
+    type    = "string"
+    default = "password1234%%"
+}
+
+variable "infra_pc_passphrase" {
+    type    = "string"
+    default = "password1234%%"
+}
+
+variable "domain_user_name" {
+    type    = "string"
+    default = "Domain"
+}
+
+variable "pc_repo_service_name" {
+    type    = "string"
+    default = "PCRS"
+}
+
+variable "pc_int_service_name" {
+    type    = "string"
+    default = "PCIS"
+}
+
 variable "bootstrap_file_name" {
     type    = "string"
     default = "../scripts/powercenter.sh"
