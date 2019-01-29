@@ -18,7 +18,7 @@ resource "null_resource" "remote-exec-master-node" {
             "export db_host_name=${var.dbs["hostname"]}-scan.${oci_core_subnet.subnet.dns_label}.${oci_core_virtual_network.virtual_network.dns_label}.oraclevcn.com",
             "export db_port=1521",
             "export db_uname=usr7",
-            "export db_servicename=${lookup(data.oci_database_databases.databases.db_unique_name)}.${oci_core_subnet.subnet.dns_label}.${oci_core_virtual_network.virtual_network.dns_label}.oraclevcn.com",
+            "export db_servicename=${data.oci_database_databases.databases.db_unique_name}.${oci_core_subnet.subnet.dns_label}.${oci_core_virtual_network.virtual_network.dns_label}.oraclevcn.com",
             "export domain_name=InfraDomain",
             "export node_name=${oci_core_instance.pc_instance.hostname_label}",
             "export grid_name=${var.infm_pc_config["grid_name"]}",
