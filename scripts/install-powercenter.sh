@@ -35,7 +35,6 @@ echo domain_host_name $domain_host_name
 
 echo ""
 echo ""
-exit 0
 
 ####
 
@@ -81,6 +80,8 @@ sed -i s/^DB_CUSTOM_STRING_SELECTION=.*/DB_CUSTOM_STRING_SELECTION=1/ /home/opc/
 sed -i s/^DB_CUSTOM_STRING=.*/DB_CUSTOM_STRING=$DB_CUSTOM_STRING/ /home/opc/infainstaller/SilentInput.properties
 echo "Starting Installation..." >> /home/opc/user_data.log
 ln -s /usr/lib/oracle/18.3/client64/lib/libclntsh.so.18.1 /usr/lib/oracle/18.3/client64/lib/libclntsh.so.11.1
+echo "STOPPING HERE FOR FIRST TEST"
+exit 0
 sh /home/opc/InfaEc2Scripts/linInfaInstallerEc2.sh $admin_console_password $master_db_password PCTest $infra_passphrase
 echo "Installation Complete. Please see installation log for more details." >> /home/opc/user_data.log
 
