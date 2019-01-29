@@ -26,7 +26,7 @@ resource "null_resource" "remote-exec-master-node" {
             "export informatica_services=2",
             "export join_node_name=NotApplicable",
             "export domain_host_name=${var.pcvm["instance_display_name"]}",
-            "sudo sh -c '/home/opc/scripts/install-powercenter.sh > /home/opc/pc_install.log'"
+            "sudo -E bash -c '/home/opc/scripts/install-powercenter.sh > /home/opc/pc_install.log'"
         ]
         connection {
             host 	 = "${oci_core_instance.pc_instance.public_ip}"
