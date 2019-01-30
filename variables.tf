@@ -27,7 +27,7 @@ variable dbs {
     type    = "map"
     default = {
         database_edition             = "ENTERPRISE_EDITION_EXTREME_PERFORMANCE"
-        home_database_admin_password = "Password_123456_Password_123456"
+        home_database_admin_password = "Password_123456_Password"
         home_database_db_name        = "pc"
         home_database_db_workload    = "OLTP"
         home_database_pdb_name       = "pdbpc"
@@ -70,8 +70,8 @@ variable infm_pc_config {
     type = "map"
     default = {
         grid_name              = "PCGRID"
-        admin_console_password = "Password_123456_Password_123456"
-        passphrase             = "Password_123456_Password_123456"
+        admin_console_password = "Password_123456_Password"
+        passphrase             = "Password_123456_Password"
         domain_user_name       = "Domain"
         repo_service_name      = "PCRS"
         int_service_name       = "PCIS"
