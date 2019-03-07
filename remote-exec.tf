@@ -10,7 +10,7 @@ resource "null_resource" "remote-exec-master-node" {
             "export create_domain=1",
             "export join_domain=0",
             "export serves_as_gateway=0",
-            "export single_node=0",
+            "export single_node=1",
             "export domain_user_name=${var.infm_pc_config["domain_user_name"]}",
             "export db_type=Oracle",
             "export repository_service_name=${var.infm_pc_config["repo_service_name"]}",

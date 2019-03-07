@@ -133,6 +133,7 @@ mv /home/opc/infainstaller/source /home/opc/infainstaller/Tmp_source
 mkdir /home/opc/infainstaller/source
 
 cd /home/opc/infainstaller
+echo "Running silent installer..." &>> /home/opc/InfaServiceLog.log
 echo Y Y | sh silentinstall.sh
 
 rmdir /home/opc/infainstaller/source
