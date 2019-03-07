@@ -71,12 +71,12 @@ then
  sh /home/opc/InfaEc2Scripts/generateTnsOra.sh $DB_SERVICENAME $DB_ADDRESS $DB_PORT &> /home/opc/InfaServiceLog.log
 
   echo "Creating DB user $DB_UNAME on DB - $DB_TYPE"
-  echo "alter session set "_ORACLE_SCRIPT"=true; create user $DB_UNAME identified by $dbpass;" | sqlplus SYS/$2@$DB_SERVICENAME AS SYSDBA &>> /home/opc/InfaServiceLog.log
-  echo "alter session set "_ORACLE_SCRIPT"=true; grant create session, create table, create procedure, create sequence, create view, create trigger, create synonym, create materialized view, query rewrite, resource, create type,dba,aq_administrator_role to $DB_UNAME;" | sqlplus SYS/$2@$DB_SERVICENAME AS SYSDBA &>> /home/opc/InfaServiceLog.log
+  echo "create user c##$DB_UNAME identified by $dbpass;" | sqlplus SYS/$2@$DB_SERVICENAME AS SYSDBA &>> /home/opc/InfaServiceLog.log
+  echo "grant create session, create table, create procedure, create sequence, create view, create trigger, create synonym, create materialized view, query rewrite, resource, create type,dba,aq_administrator_role to $DB_UNAME;" | sqlplus SYS/$2@$DB_SERVICENAME AS SYSDBA &>> /home/opc/InfaServiceLog.log
 
   echo "Creating DB user $REPO_USER on DB - $DB_TYPE"
-  echo "alter session set "_ORACLE_SCRIPT"=true; create user $REPO_USER identified by $dbpass;" | sqlplus SYS/$2@$DB_SERVICENAME AS SYSDBA &>> /home/opc/InfaServiceLog.log
-  echo "alter session set "_ORACLE_SCRIPT"=true; grant create session, create table, create procedure, create sequence, create view, create trigger, create synonym, create materialized view, query rewrite, resource, create type,dba,aq_administrator_role to $REPO_USER;" | sqlplus SYS/$2@$DB_SERVICENAME AS SYSDBA &>> /home/opc/InfaServiceLog.log
+  echo "create user c##$REPO_USER identified by $dbpass;" | sqlplus SYS/$2@$DB_SERVICENAME AS SYSDBA &>> /home/opc/InfaServiceLog.log
+  echo "grant create session, create table, create procedure, create sequence, create view, create trigger, create synonym, create materialized view, query rewrite, resource, create type,dba,aq_administrator_role to $REPO_USER;" | sqlplus SYS/$2@$DB_SERVICENAME AS SYSDBA &>> /home/opc/InfaServiceLog.log
 
 fi
 
